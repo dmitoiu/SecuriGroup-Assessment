@@ -2,6 +2,8 @@
 
 ### Assessment - React/NextJS/TailwindCSS
 
+![](docs/c5d168fe31e6a70226ad5b5cf6d34428.png)
+
 #### Installing Packages
 
 ##### In Root Directory
