@@ -2,7 +2,7 @@
 
 ### Assessment - React/NextJS/TailwindCSS
 
-![](docs/c5d168fe31e6a70226ad5b5cf6d34428.png)
+![](docs/a154b5596548192d4f1c722005cc1df6.png)
 
 #### Installing Packages
 
