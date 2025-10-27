@@ -6,26 +6,21 @@ export async function GET(req: NextRequest) {
     const queryResult = new URLSearchParams(query);
     let latitude: any = queryResult.get("lat");
     let longitude: any = queryResult.get("lon");
-    console.log("Query: ", query, latitude, longitude);
     if (!query) {
         return NextResponse.json({ error: "Missing location" }, { status: 400 });
     }
 
     try {
         const apiKey = process.env.OPENWEATHER_API_KEY;
-        console.log("Key: ", apiKey);
-
         if (!apiKey) {
             return NextResponse.json(
                 { error: "Missing API key in environment" },
                 { status: 500 }
             );
         }
-
         const res = await fetch(
             `https://api.openweathermap.org/data/2.5/forecast?lat=${encodeURIComponent(latitude)}&lon=${encodeURIComponent(longitude)}&units=metric&appid=${apiKey}`
         );
-
         if (!res.ok) {
             const errData = await res.json().catch(() => ({}));
             return NextResponse.json(

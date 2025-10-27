@@ -88,7 +88,6 @@ export default function Home() {
       let result = postCodeData.result;
       let latitude = result.latitude;
       let longitude = result.longitude;
-      console.log("Postcode Data: ", latitude, longitude);
       let query = `lat=${latitude}&lon=${longitude}`;
       try {
         setLoading(true);
@@ -96,7 +95,6 @@ export default function Home() {
             `/api/weather?query=${encodeURIComponent(query)}`
         );
         const data = await res.json();
-        console.log("Data: ", data);
         if (!res.ok) throw new Error(data.error || "Failed to fetch weather");
         setWeather(data);
         setHistory((prev) => {
@@ -117,14 +115,12 @@ export default function Home() {
     e.preventDefault();
     setLocation("");
     setWeather(null);
-    console.log("Location: ", location, e);
   }
 
   async function handleWeatherRecentSearchClear(e: any) {
     e.preventDefault();
     localStorage?.setItem("weatherHistory", "");
     setHistory([]);
-    console.log("History: ", history, e);
   }
 
   async function handleWeatherLocationRequest(e: any) {
@@ -144,7 +140,6 @@ export default function Home() {
         async (position) => {
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
-          console.log("Current location:", latitude, longitude);
 
           try {
             const query = `lat=${latitude}&lon=${longitude}`;
@@ -181,8 +176,6 @@ export default function Home() {
       const res = await fetch(`/api/postcode?query=${encodeURIComponent(location)}`);
       const data = await res.json();
 
-      console.log("Postcode data:", data);
-
       if (!res.ok) throw new Error(data.error || "Failed to fetch postcode data");
 
       setPostcode(data);
@@ -197,8 +190,6 @@ export default function Home() {
 
   const handleOnLocationChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLocation(e.target.value);
-    console.log("Event: ", e);
-    console.log("Location Event: ", location);
   }
 
   const getWeatherIcon = (temp: number, main: string) => {
